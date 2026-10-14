@@ -92,6 +92,9 @@ and 'none' passes the map through unchanged, excepting the result is renormalize
 SuperMat Model
 https://github.com/hyj542682306/SuperMat
 
+Example image
+Pavel Neznanov https://unsplash.com/@npi (Unsplash license: https://unsplash.com/license)
+
 ## License
 
 MIT
