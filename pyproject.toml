@@ -1,7 +1,7 @@
 [project]
 name = "ComfyUI-SuperPBR"
 description = "ComfyUI nodes for turning any picture into a full PBR material."
-version = "0.0.0"
+version = "0.1"
 license = {file = "LICENSE"}
 dependencies = []
 
