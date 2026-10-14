@@ -28,7 +28,7 @@ For generating normal and height maps, I recommend using the native MoGe nodes (
 
 ## Basic workflow
 
-![preview](worflow.png?raw=true "ComfyUI-SuperPBR")
+![preview](workflow.png?raw=true "ComfyUI-SuperPBR")
 
 ## Nodes
 
