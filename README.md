@@ -83,7 +83,7 @@ should. 'method' selects how the background surface is estimated: 'quadratic'
 fits a second-order surface on the image's border ring with iterative outlier
 rejection (also removes the smooth curvature depth models leave on
 flat inputs), 'bilinear' interpolates between four averaged corner patches,
-and 'none' passes the map through unchanged, excepting the result is renormalized to [0, 1].
+and 'none' passes the map through unchanged.
 
 ## Credits
 
