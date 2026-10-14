@@ -12,8 +12,6 @@ Only the Base SuperMat model is supported here. The multi-view model and the UV
 refinement networks are not, but it’s only a matter of time. :-)
 
 
-![preview](main.png?raw=true "ComfyUI-SuperPBR")
-
 ## Installation
 
 ```bash
