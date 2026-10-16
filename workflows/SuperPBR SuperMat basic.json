@@ -1,0 +1,754 @@
+{
+  "id": "b1960568-2773-4ed7-9d89-230c4cdf4f83",
+  "revision": 0,
+  "last_node_id": 22,
+  "last_link_id": 43,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "LoadImage",
+      "pos": [
+        137.38209188730733,
+        -304.0091640832947
+      ],
+      "size": [
+        282.1866683959961,
+        314.0000000000001
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            31
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": [
+            32
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "louis-le-pessot-SEbyaDxnRIo-unsplash_1024.jpg",
+        "image"
+      ],
+      "widgets_values_named": {
+        "image": "louis-le-pessot-SEbyaDxnRIo-unsplash_1024.jpg",
+        "upload": "image"
+      }
+    },
+    {
+      "id": 2,
+      "type": "SuperPBRDecompose",
+      "pos": [
+        435.11179224495726,
+        -104.96566049745627
+      ],
+      "size": [
+        270,
+        202
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 33
+        },
+        {
+          "name": "model",
+          "type": "SUPERMAT",
+          "link": 14
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 15
+        },
+        {
+          "name": "clip",
+          "shape": 7,
+          "type": "CLIP",
+          "link": 41
+        },
+        {
+          "name": "mask",
+          "shape": 7,
+          "type": "MASK",
+          "link": 34
+        },
+        {
+          "name": "anchor_image",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 35
+        },
+        {
+          "name": "tilesig",
+          "shape": 7,
+          "type": "TILESIG",
+          "link": 36
+        }
+      ],
+      "outputs": [
+        {
+          "name": "albedo",
+          "type": "IMAGE",
+          "links": [
+            37
+          ]
+        },
+        {
+          "name": "orm",
+          "type": "IMAGE",
+          "links": [
+            38
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SuperPBRDecompose"
+      },
+      "widgets_values": [
+        512,
+        8
+      ],
+      "widgets_values_named": {
+        "resolution": 512,
+        "batch_chunk": 8
+      }
+    },
+    {
+      "id": 6,
+      "type": "PreviewImage",
+      "pos": [
+        720.5448361846708,
+        -306.7486334778411
+      ],
+      "size": [
+        262.5784696242549,
+        252.31846106671333
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 42
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": []
+        }
+      ],
+      "title": "albedo",
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      },
+      "widgets_values": [],
+      "widgets_values_named": {}
+    },
+    {
+      "id": 9,
+      "type": "SuperPBRModelLoader",
+      "pos": [
+        135.24405118737755,
+        64.3129712388699
+      ],
+      "size": [
+        282.9468154032926,
+        58
+      ],
+      "flags": {
+        "collapsed": false
+      },
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "model",
+          "type": "SUPERMAT",
+          "links": [
+            14
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SuperPBRModelLoader"
+      },
+      "widgets_values": [
+        "SUPERMAT/supermat.safetensors"
+      ],
+      "widgets_values_named": {
+        "model": "SUPERMAT/supermat.safetensors"
+      }
+    },
+    {
+      "id": 10,
+      "type": "VAELoader",
+      "pos": [
+        138.96865955888623,
+        224.08419252467905
+      ],
+      "size": [
+        285.536218835146,
+        58
+      ],
+      "flags": {
+        "collapsed": true
+      },
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            15
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAELoader"
+      },
+      "widgets_values": [
+        "vae-ft-mse-840000-ema-pruned.safetensors"
+      ],
+      "widgets_values_named": {
+        "vae_name": "vae-ft-mse-840000-ema-pruned.safetensors"
+      }
+    },
+    {
+      "id": 15,
+      "type": "PreviewImage",
+      "pos": [
+        722.0923206928634,
+        -15.19247048549668
+      ],
+      "size": [
+        262.5784696242549,
+        252.31846106671333
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 40
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": []
+        }
+      ],
+      "title": "orm",
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      },
+      "widgets_values": [],
+      "widgets_values_named": {}
+    },
+    {
+      "id": 16,
+      "type": "SuperPBRORMSplit",
+      "pos": [
+        993.0439030187016,
+        -307.9492838637827
+      ],
+      "size": [
+        194.1872314453125,
+        66
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "orm",
+          "type": "IMAGE",
+          "link": 43
+        }
+      ],
+      "outputs": [
+        {
+          "name": "occlusion",
+          "type": "IMAGE",
+          "links": [
+            29
+          ]
+        },
+        {
+          "name": "roughness",
+          "type": "IMAGE",
+          "links": [
+            25
+          ]
+        },
+        {
+          "name": "metallic",
+          "type": "IMAGE",
+          "links": [
+            26
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SuperPBRORMSplit"
+      }
+    },
+    {
+      "id": 17,
+      "type": "PreviewImage",
+      "pos": [
+        1147.2391320288991,
+        -193.16748141361217
+      ],
+      "size": [
+        140,
+        246
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 25
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": null
+        }
+      ],
+      "title": "roughness",
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      },
+      "widgets_values": [],
+      "widgets_values_named": {}
+    },
+    {
+      "id": 18,
+      "type": "PreviewImage",
+      "pos": [
+        1297.2391320288991,
+        -193.16748141361217
+      ],
+      "size": [
+        140,
+        246
+      ],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 26
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": null
+        }
+      ],
+      "title": "metallic",
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      },
+      "widgets_values": [],
+      "widgets_values_named": {}
+    },
+    {
+      "id": 19,
+      "type": "PreviewImage",
+      "pos": [
+        997.588098203589,
+        -191.9036161801415
+      ],
+      "size": [
+        140,
+        246
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 29
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": null
+        }
+      ],
+      "title": "occlusion",
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      },
+      "widgets_values": [],
+      "widgets_values_named": {}
+    },
+    {
+      "id": 20,
+      "type": "SuperPBRTileSplit",
+      "pos": [
+        434.0377419123793,
+        -305.7304744085668
+      ],
+      "size": [
+        270,
+        142
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 31
+        },
+        {
+          "name": "mask",
+          "shape": 7,
+          "type": "MASK",
+          "link": 32
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": [
+            33
+          ]
+        },
+        {
+          "name": "mask",
+          "type": "MASK",
+          "links": [
+            34
+          ]
+        },
+        {
+          "name": "anchor_image",
+          "type": "IMAGE",
+          "links": [
+            35
+          ]
+        },
+        {
+          "name": "tilesig",
+          "type": "TILESIG",
+          "links": [
+            30,
+            36
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SuperPBRTileSplit"
+      },
+      "widgets_values": [
+        512,
+        128
+      ],
+      "widgets_values_named": {
+        "tile_size": 512,
+        "overlap": 128
+      }
+    },
+    {
+      "id": 21,
+      "type": "SuperPBRTileStitch",
+      "pos": [
+        435.00832518698644,
+        163.42834860204175
+      ],
+      "size": [
+        269.4154679880097,
+        74.22857979380336
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "albedo",
+          "type": "IMAGE",
+          "link": 37
+        },
+        {
+          "name": "orm",
+          "type": "IMAGE",
+          "link": 38
+        },
+        {
+          "name": "tilesig",
+          "type": "TILESIG",
+          "link": 30
+        }
+      ],
+      "outputs": [
+        {
+          "name": "albedo",
+          "type": "IMAGE",
+          "links": [
+            42
+          ]
+        },
+        {
+          "name": "orm",
+          "type": "IMAGE",
+          "links": [
+            40,
+            43
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SuperPBRTileStitch"
+      }
+    },
+    {
+      "id": 22,
+      "type": "CLIPLoader",
+      "pos": [
+        135.50378712463387,
+        173.34905715400046
+      ],
+      "size": [
+        270,
+        106
+      ],
+      "flags": {
+        "collapsed": true
+      },
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            41
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPLoader"
+      },
+      "widgets_values": [
+        "vit_h.fp16.safetensors",
+        "stable_diffusion",
+        "default"
+      ],
+      "widgets_values_named": {
+        "clip_name": "vit_h.fp16.safetensors",
+        "type": "stable_diffusion",
+        "device": "default"
+      }
+    }
+  ],
+  "links": [
+    [
+      14,
+      9,
+      0,
+      2,
+      1,
+      "SUPERMAT"
+    ],
+    [
+      15,
+      10,
+      0,
+      2,
+      2,
+      "VAE"
+    ],
+    [
+      25,
+      16,
+      1,
+      17,
+      0,
+      "IMAGE"
+    ],
+    [
+      26,
+      16,
+      2,
+      18,
+      0,
+      "IMAGE"
+    ],
+    [
+      29,
+      16,
+      0,
+      19,
+      0,
+      "IMAGE"
+    ],
+    [
+      30,
+      20,
+      3,
+      21,
+      2,
+      "TILESIG"
+    ],
+    [
+      31,
+      1,
+      0,
+      20,
+      0,
+      "IMAGE"
+    ],
+    [
+      32,
+      1,
+      1,
+      20,
+      1,
+      "MASK"
+    ],
+    [
+      33,
+      20,
+      0,
+      2,
+      0,
+      "IMAGE"
+    ],
+    [
+      34,
+      20,
+      1,
+      2,
+      4,
+      "MASK"
+    ],
+    [
+      35,
+      20,
+      2,
+      2,
+      5,
+      "IMAGE"
+    ],
+    [
+      36,
+      20,
+      3,
+      2,
+      6,
+      "TILESIG"
+    ],
+    [
+      37,
+      2,
+      0,
+      21,
+      0,
+      "IMAGE"
+    ],
+    [
+      38,
+      2,
+      1,
+      21,
+      1,
+      "IMAGE"
+    ],
+    [
+      40,
+      21,
+      1,
+      15,
+      0,
+      "IMAGE"
+    ],
+    [
+      41,
+      22,
+      0,
+      2,
+      3,
+      "CLIP"
+    ],
+    [
+      42,
+      21,
+      0,
+      6,
+      0,
+      "IMAGE"
+    ],
+    [
+      43,
+      21,
+      1,
+      16,
+      0,
+      "IMAGE"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 1.2284597357367264,
+      "offset": [
+        409.9912480080741,
+        460.92446497543784
+      ]
+    },
+    "frontendVersion": "1.55.14",
+    "VHS_latentpreview": true,
+    "VHS_latentpreviewrate": 0,
+    "VHS_MetadataImage": true,
+    "VHS_KeepIntermediate": true
+  },
+  "version": 0.4
+}
