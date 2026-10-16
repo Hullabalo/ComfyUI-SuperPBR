@@ -1,5 +1,6 @@
 # ComfyUI SuperPBR
 
+![preview](SuperMat.png?raw=true "ComfyUI-SuperPBR")
 ComfyUI nodes for the **Base SuperMat** model from
 [SuperMat: Physically Consistent PBR Material Estimation at Interactive Rates](https://github.com/hyj542682306/SuperMat) (ICCV 2025).
 
@@ -7,10 +8,6 @@ SuperMat is a Stable Diffusion 2.1 UNet finetuned to run as a single-step,
 deterministic feed-forward network. One pass over a rendered object produces its
 **albedo** and **ORM** (occlusion / roughness / metallic) maps, which is what you
 need to rebuild a PBR texture from a render.
-
-Only the Base SuperMat model is supported here. The multi-view model and the UV
-refinement networks are not, but it’s only a matter of time. :-)
-
 
 ## Installation
 
@@ -21,19 +18,21 @@ git clone https://github.com/Hullabalo/ComfyUI-SuperPBR.git
 
 ## Model files
 
-Put 'supermat.pth' anywhere under your 'diffusion_models' folders.
-For generating normal and height maps, I recommend using the native MoGe nodes (stable with ComfyUI 0.39.0), along with the following model: [MoGe 3 ViTG FP16](https://huggingface.co/Comfy-Org/MoGe/resolve/main/geometry_estimation/moge_3_vitg_fp16.safetensors?download=true) with the **SuperPBR Detilt** node (see the workflows folder for examples).
+Put [supermat.pth]([https://huggingface.co/oyiya/SuperMat](https://huggingface.co/oyiya/SuperMat/resolve/main/supermat.pth?download=true) anywhere under your models/diffusion_models' folder.
 
-## Basic workflow
+For generating normal and height maps, I recommend using the native MoGe 3 nodes (as provided with ComfyUI 0.39.0 base install), along with the following model in models/geometry_estimation: [MoGe 3 ViTG FP16](https://huggingface.co/Comfy-Org/MoGe/resolve/main/geometry_estimation/moge_3_vitg_fp16.safetensors?download=true), used  the **SuperPBR Detilt** node (see below).
 
-![preview](workflow.png?raw=true "ComfyUI-SuperPBR")
+## Example workflow
+
+![preview](SuperMatxMoge3.png?raw=true "ComfyUI-SuperMatxMoGe3")
+Using SuperMat (albedo, orm) and MoGe3 (height, normal)
 
 ## Nodes
 
-### Load SuperPBR Model
+### 🆒 Load SuperPBR Model
 Selects a Base SuperMat checkpoint ('.pth') and returns a 'SUPERMAT' model.
 
-### SuperPBR Material
+### 🆒 SuperPBR Material
 Decomposes an image into 'albedo' and 'orm' ('R' = ambient occlusion, 'G = roughness, 'B' = metallic).
 
 | Input | Notes |
@@ -46,7 +45,7 @@ Decomposes an image into 'albedo' and 'orm' ('R' = ambient occlusion, 'G = rough
 | 'mask' | Optional. SuperMat expects the object on a flat '0.5' gray background; connect a mask and the node composites it that way for you. |
 | 'batch_chunk' | Images decomposed per UNet/VAE pass (1–16, default 8). Larger batches are chunked and concatenated — same output, capped peak VRAM on big tile grids. |
 
-### SuperPBR Tile Split / SuperPBR Tile Stitch
+### 🆒 SuperPBR Tile Split and 🆒 SuperPBR Tile Stitch
 
 For images larger than 512: split into an overlapping tile batch, decompose, then
 feather-blend the tiles back together. The decomposition node is batch-native, so
@@ -69,13 +68,13 @@ connect Tile Split's 'anchor_image' and 'tilesig' outputs into its
 over the whole (downscaled) image and blends each tile onto it with a frequency split, 
 in pixel space.
 
-### SuperPBR ORM Split
+### 🆒 SuperPBR ORM Split
 
 Splits an ORM map (R = occlusion/AO, G = roughness, B = metallic) — straight
 from **SuperPBR Material** or reassembled by **SuperPBR Tile Stitch** —
 into three separate gray images.
 
-### SuperPBR Detilt
+### 🆒 SuperPBR Detilt
 
 Removes the spurious tilt (and dome/bowl curvature) that depth models often
 leave on flat areas, so a displacement/height map displaces flat where it
@@ -87,12 +86,23 @@ and 'none' passes the map through unchanged.
 
 ## Credits
 
-SuperMat Model
+Thanks to the following contributors to :
+
+**SuperMat Model**
 https://github.com/hyj542682306/SuperMat
 
-Example image
-Pavel Neznanov https://unsplash.com/@npi (Unsplash license: https://unsplash.com/license)
+**MoGe 3 Model**
+https://github.com/microsoft/moge
 
-## License
+**ComfyUI** (of course :-))
+https://github.com/Comfy-Org/ComfyUI
 
-MIT
+**Example images**
+[Pavel Neznanov](https://unsplash.com/@npi)
+[Louis Le Pessot](https://unsplash.com/@louisllp)
+
+## Licenses
+
+All code and models, including this repo is MIT
+
+Images are under [Unsplash license](https://unsplash.com/license)
