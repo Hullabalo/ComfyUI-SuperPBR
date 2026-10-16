@@ -18,9 +18,11 @@ git clone https://github.com/Hullabalo/ComfyUI-SuperPBR.git
 
 ## Model files
 
-Put [supermat.pth]([https://huggingface.co/oyiya/SuperMat](https://huggingface.co/oyiya/SuperMat/resolve/main/supermat.pth?download=true) anywhere under your models/diffusion_models' folder.
+Put [supermat.pth](https://huggingface.co/oyiya/SuperMat/resolve/main/supermat.pth?download=true) anywhere under your models/diffusion_models' folder.
 
-For generating normal and height maps, I recommend using the native MoGe 3 nodes (as provided with ComfyUI 0.39.0 base install), along with the following model in models/geometry_estimation: [MoGe 3 ViTG FP16](https://huggingface.co/Comfy-Org/MoGe/resolve/main/geometry_estimation/moge_3_vitg_fp16.safetensors?download=true), used  the **SuperPBR Detilt** node (see below).
+Watch below (in SuperPBR Material node description) for advice on VAE and clip.
+
+For generating normal and height maps, I recommend using the native MoGe 3 nodes (as provided with ComfyUI 0.39.0 base install), along with the following model in models/geometry_estimation: [MoGe 3 ViTG FP16](https://huggingface.co/Comfy-Org/MoGe/resolve/main/geometry_estimation/moge_3_vitg_fp16.safetensors?download=true) and the **SuperPBR Detilt** node (see below).
 
 ## Example workflow
 
@@ -55,7 +57,7 @@ it needed no changes.
 resolution — tiles up to 768 also give good results), 'overlap' (default 128 px),
 and an optional 'mask' which is split on the exact same grid so it stays
 pixel-aligned with the image tiles. It returns the image and mask tile batches, an
-'anchor_image' (the full mask-composited image padded to the tile canvas — see
+'anchor_image' (the full mask-composited image padded to the tile canvas. See
 the global anchor below) and a 'tilesig' grid signature.
 
 **Tile Stitch** takes the 'albedo' and 'orm' tile batches plus the 'tilesig'
@@ -70,8 +72,8 @@ in pixel space.
 
 ### 🆒 SuperPBR ORM Split
 
-Splits an ORM map (R = occlusion/AO, G = roughness, B = metallic) — straight
-from **SuperPBR Material** or reassembled by **SuperPBR Tile Stitch** —
+Splits an ORM map (R = occlusion/AO, G = roughness, B = metallic) straight
+from **SuperPBR Material** or reassembled by **SuperPBR Tile Stitch**,
 into three separate gray images.
 
 ### 🆒 SuperPBR Detilt
