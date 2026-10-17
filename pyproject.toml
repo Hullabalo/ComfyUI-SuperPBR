@@ -12,4 +12,4 @@ Repository = "https://github.com/Hullabalo/ComfyUI-SuperPBR"
 [tool.comfy]
 PublisherId = "hullabaloo"
 DisplayName = "ComfyUI-SuperPBR"
-Icon = "https://github.com/Hullabalo/ComfyUI-ZipDepth/raw/main/superpbr.png"
+Icon = "https://github.com/Hullabalo/ComfyUI-SuperPBR/raw/main/superpbr.png"
