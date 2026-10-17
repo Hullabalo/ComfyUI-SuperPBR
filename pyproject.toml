@@ -1,7 +1,7 @@
 [project]
 name = "ComfyUI-SuperPBR"
 description = "ComfyUI nodes for turning any picture into a full PBR material."
-version = "0.1.2"
+version = "0.1.3"
 license = {file = "LICENSE"}
 dependencies = []
 
@@ -12,4 +12,4 @@ Repository = "https://github.com/Hullabalo/ComfyUI-SuperPBR"
 [tool.comfy]
 PublisherId = "hullabaloo"
 DisplayName = "ComfyUI-SuperPBR"
-Icon = "https://github.com/Hullabalo/ComfyUI-SuperPBR/raw/main/superpbr.png"
+Icon = "https://github.com/Hullabalo/ComfyUI-SuperPBR/raw/main/superpbr-large.png"
